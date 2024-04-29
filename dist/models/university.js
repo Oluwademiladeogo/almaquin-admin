@@ -44,11 +44,14 @@ const UniversitySchema = new Schema({
         type: String,
         required: true,
     },
-    overview: {
-        type: Map,
-        of: String,
-        required: true,
-    },
+    overview: [{
+            name: {
+                type: String,
+            },
+            description: {
+                type: String,
+            },
+        }],
     schools: {
         type: [AcademicSchema],
         required: true,
@@ -61,10 +64,25 @@ const UniversitySchema = new Schema({
         type: [PostgraduateSchema],
         required: true,
     },
-    relevantLinks: {
-        type: Map,
-        of: String,
-        required: true,
-    },
+    relevantLinks: [{
+            name: {
+                type: String,
+                required: true,
+            },
+            url: {
+                type: String,
+                required: true,
+            },
+        }],
+    faq: [{
+            question: {
+                type: String,
+                required: true,
+            },
+            answer: {
+                type: String,
+                required: true,
+            },
+        }],
 });
 export const University = mongoose.model("University", UniversitySchema);
