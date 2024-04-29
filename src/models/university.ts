@@ -1,11 +1,46 @@
-import mongoose, { Schema } from "mongoose";
-import {
-  IProgram,
-  IAcademic,
-  IUndergraduate,
-  IPostgraduate,
-  IUniversityDoc,
-} from "../types/types.js";
+import mongoose, { Schema, Document } from "mongoose";
+
+interface IProgram {
+  name: string;
+  certs?: string[];
+}
+
+interface IAcademic {
+  name: string;
+  programs: IProgram[];
+}
+
+interface IUndergraduate {
+  name: string;
+  programs: IProgram[];
+}
+
+interface IPostgraduate {
+  name: string;
+  programs: IProgram[];
+}
+
+interface IUniversityDoc extends Document {
+  name: string;
+  shortName?: string;
+  picture: string;
+  websiteLink: string;
+  overview: {
+    name: string;
+    description: string;
+  }[];
+  schools: IAcademic[];
+  undergraduate: IUndergraduate[];
+  postgraduate: IPostgraduate[];
+  relevantLinks: {
+    name: string;
+    url: string;
+  }[];
+  faq: {
+    question: string;
+    answer: string;
+  }[];
+}
 
 const ProgramSchema: Schema<IProgram> = new Schema<IProgram>({
   name: {
@@ -56,11 +91,14 @@ const UniversitySchema: Schema<IUniversityDoc> = new Schema<IUniversityDoc>({
     type: String,
     required: true,
   },
-  overview: {
-    type: Map,
-    of: String,
-    required: true,
-  },
+  overview: [{
+    name: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+  }],
   schools: {
     type: [AcademicSchema],
     required: true,
@@ -73,11 +111,26 @@ const UniversitySchema: Schema<IUniversityDoc> = new Schema<IUniversityDoc>({
     type: [PostgraduateSchema],
     required: true,
   },
-  relevantLinks: {
-    type: Map,
-    of: String,
-    required: true,
-  },
+  relevantLinks: [{
+    name: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+  }],
+  faq: [{
+    question: {
+      type: String,
+      required: true,
+    },
+    answer: {
+      type: String,
+      required: true,
+    },
+  }],
 });
 
 export const University = mongoose.model<IUniversityDoc>(
