@@ -4,12 +4,9 @@ import { buildAuthenticatedRouter } from '@adminjs/express';
 import provider from './admin/auth-provider.js';
 import initializeDb from './db/index.js';
 import {ContactInfo} from './models/contactInfo.js';
-import {FAQ} from './models/faq.js';
 import { User } from './models/users.js';
 import {SecSchool} from './models/secSchool.js';
 import {University} from './models/university.js';
-import {UsefulLink} from './models/usefulLink.js';
-// import Users from './models/prayers.js';
 
 const port = process.env.PORT || 8000;
 
@@ -28,15 +25,13 @@ const start = async () => {
           }
         }
       },
-      FAQ,
       ContactInfo,
       SecSchool,
       University,
-      UsefulLink,
     ],
     branding: {
       logo: false,
-      companyName: "CTF",
+      companyName: "Almaquin",
       withMadeWithLove: false  
     },
   })
