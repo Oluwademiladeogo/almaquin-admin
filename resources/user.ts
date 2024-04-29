@@ -2,6 +2,7 @@ import argon2 from 'argon2';
 
 import {User} from '../src/models/users.js';
 import componentLoader from '../src/admin/component-loader.js';
+import passwordsFeature from '@adminjs/passwords';
 
 const adminJsOptions = {
   resources: [
@@ -12,14 +13,14 @@ const adminJsOptions = {
         properties: { password: { isVisible: false } },
       },
       features: [
-      //   passwordsFeature({
-      //     componentLoader,
-      //     properties: {
-      //       encryptedPassword: 'password',
-      //       password: 'newPassword'
-      //     },
-      //     hash: argon2.hash,
-      // })
+        passwordsFeature({
+          componentLoader,
+          properties: {
+            encryptedPassword: 'password',
+            password: 'newPassword'
+          },
+          hash: argon2.hash,
+      })
       ]
     },
   ],
