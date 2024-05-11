@@ -10,14 +10,26 @@ interface IAcademic {
   programs: IProgram[];
 }
 
-interface IUndergraduate {
+interface IUndergraduate extends Document {
   name: string;
   programs: IProgram[];
+  dates: string;
+  admissions: string;
+  documents: string;
+  fluidStudents: string;
+  exams: string;
+  fees: string;
 }
 
-interface IPostgraduate {
+interface IPostgraduate extends Document {
   name: string;
   programs: IProgram[];
+  dates: string;
+  admissions: string;
+  documents: string;
+  fluidStudents: string;
+  exams: string;
+  fees: string;
 }
 
 interface IUniversityDoc extends Document {
@@ -64,6 +76,12 @@ const UndergraduateSchema: Schema<IUndergraduate> = new Schema<IUndergraduate>({
     required: true,
   },
   programs: [ProgramSchema],
+  dates: String,
+  admissions: String,
+  documents: String,
+  fluidStudents: String,
+  exams: String,
+  fees: String,
 });
 
 const PostgraduateSchema: Schema<IPostgraduate> = new Schema<IPostgraduate>({
@@ -72,6 +90,12 @@ const PostgraduateSchema: Schema<IPostgraduate> = new Schema<IPostgraduate>({
     required: true,
   },
   programs: [ProgramSchema],
+  dates: String,
+  admissions: String,
+  documents: String,
+  fluidStudents: String,
+  exams: String,
+  fees: String,
 });
 
 const UniversitySchema: Schema<IUniversityDoc> = new Schema<IUniversityDoc>({
