@@ -1,0 +1,10 @@
+{
+    "watch": ["src"],
+    "ext": "ts,js,json",
+    "ignore": ["dist/*"],
+    "exec": "node --loader ts-node/esm -r dotenv/config src/app.ts",
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+  
