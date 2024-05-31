@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { IContactInfo } from "../types/types";
+import { IContactInfo } from "../types/types.js";
 
 const ContactInfoSchema: Schema<IContactInfo> = new Schema<IContactInfo>({
   phone: {

@@ -8,7 +8,8 @@ export interface INews extends Document {
   publishedDate: Date;
   pictures: string[];
 }
-export interface ISchool extends Document {
+
+export interface ISecSchool extends Document {
   name: string;
   location?: string;
 }
@@ -18,11 +19,13 @@ export interface IContactInfo {
   email: string;
   fax: string;
 }
+
 export interface IUserContact {
   name: string;
   email: string;
   message: string;
 }
+
 export interface IUserDoc extends Document {
   email: string;
   phone_no: string;

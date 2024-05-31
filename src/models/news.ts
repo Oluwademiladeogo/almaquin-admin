@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { INews } from "../types/types";
+import { INews } from "../types/types.js";
 
 const NewsSchema: Schema = new Schema({
   title: {

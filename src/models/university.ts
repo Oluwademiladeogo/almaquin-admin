@@ -5,7 +5,7 @@ import {
   IProgram,
   IUndergraduate,
   IUniversityDoc,
-} from "../types/types";
+} from "../types/types.js";
 
 const ProgramSchema: Schema<IProgram> = new Schema<IProgram>({
   name: {
