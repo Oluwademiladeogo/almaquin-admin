@@ -1,10 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface IUserContact {
-  name: string;
-  email: string;
-  message: string;
-}
+import { IUserContact } from "../types/types";
 
 const UserContactSchema: Schema<IUserContact> = new Schema<IUserContact>({
   name: {

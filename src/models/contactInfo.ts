@@ -1,10 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface IContactInfo {
-  phone: string;
-  email: string;
-  fax: string;
-}
+import { IContactInfo } from "../types/types";
 
 const ContactInfoSchema: Schema<IContactInfo> = new Schema<IContactInfo>({
   phone: {

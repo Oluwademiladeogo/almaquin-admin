@@ -1,4 +1,4 @@
-import { JwtPayload } from "./types.js";
+import { JwtPayload } from "./types";
 declare module "express" {
   interface Request {
     user?: JwtPayload;

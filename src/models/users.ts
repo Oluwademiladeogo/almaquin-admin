@@ -1,18 +1,5 @@
 import mongoose, { Document } from "mongoose";
-
-export interface IUserDoc extends Document {
-  email: string;
-  phone_no: string;
-  password: string;
-  role: string;
-  surname: string;
-  firstName: string;
-  birthday: Date;
-  presentSchool: string;
-  schoolLocation: string;
-  classLevel: string;
-  reasonForJoining: string;
-}
+import { IUserDoc } from "../types/types";
 
 export const User = mongoose.model<IUserDoc>(
   "Users",

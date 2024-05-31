@@ -1,12 +1,9 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
+import { ISchool } from "../types/types";
 
-export interface School extends Document {
-  name: string;
-  location?: string;
-}
-
-const SchoolSchema: Schema = new Schema({
+const SchoolSchema: Schema<ISchool> = new Schema({
   name: { type: String, required: true },
+  location: { type: String },
 });
 
-export const SecSchool = mongoose.model<School>('School', SchoolSchema);
+export default mongoose.model<ISchool>("School", SchoolSchema);
