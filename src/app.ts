@@ -22,7 +22,7 @@ const start = async () => {
         resource: User,
         options: {
           properties: {
-            password: { isVisible: { list: false, filter: false, show: false, edit: false } },
+            // password: { isVisible: { list: false, filter: false, show: false, edit: false } },
           },
         },
       },
