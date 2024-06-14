@@ -105,6 +105,7 @@ export interface IUniversityDoc extends Document {
   }[];
   dateAdded: Date;
   dateModified: Date;
+  lastUpdatedBy: string;
 }
 
 export interface JwtPayload {

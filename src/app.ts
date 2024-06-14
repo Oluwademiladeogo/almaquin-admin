@@ -38,16 +38,10 @@ const start = async () => {
               isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
             },
             list: {
-              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'],
+              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin']
             },
             show: {
-              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'],
-            },
-            bulkDelete: {
-              isAccessible: () => false,
-            },
-            bulkEdit: {
-              isAccessible: () => false,
+              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin']
             },
           },
         },
@@ -81,7 +75,32 @@ const start = async () => {
       {
         resource: University,
         options: {
+          properties: {
+            pageCreator: {
+              isVisible: { list: true, filter: true, show: true, edit: false },
+            },
+            lastUpdatedBy: {
+              isVisible: { list: true, filter: true, show: true, edit: false },
+            },
+          },
           actions: {
+            new: {
+              before: async (request, context) => {
+                if (request.payload && context.currentAdmin) {
+                  request.payload.pageCreator = `${context.currentAdmin.firstName} ${context.currentAdmin.lastName}`;
+                }
+                return request;
+              },
+            },
+            edit: {
+              // isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
+              before: async (request, context) => {
+                if (request.payload && context.currentAdmin) {
+                  request.payload.lastUpdatedBy = `${context.currentAdmin.firstName} ${context.currentAdmin.surname}`;
+                }
+                return request;
+              },
+            },
             delete: {
               isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
             },

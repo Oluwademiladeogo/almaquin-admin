@@ -1,5 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
-import { IAcademic, IPostgraduate, IProgram, IUndergraduate, IUniversityDoc } from '../types/types.js';
+import mongoose, { Schema } from "mongoose";
+import {
+  IAcademic,
+  IPostgraduate,
+  IProgram,
+  IUndergraduate,
+  IUniversityDoc,
+} from "../types/types.js";
 
 const ProgramSchema: Schema<IProgram> = new Schema<IProgram>({
   name: {
@@ -68,6 +74,7 @@ const UniversitySchema: Schema<IUniversityDoc> = new Schema<IUniversityDoc>({
   pageCreator: {
     type: String,
     required: true,
+    immutable: true,
   },
   ownership: {
     type: String,
@@ -148,9 +155,17 @@ const UniversitySchema: Schema<IUniversityDoc> = new Schema<IUniversityDoc>({
     type: Date,
     default: Date.now,
   },
+  lastUpdatedBy: {
+    type: String,
+  },
 });
-UniversitySchema.pre('save', function (next) {
+
+UniversitySchema.pre("save", function (next) {
   this.dateModified = new Date();
   next();
 });
-export const University = mongoose.model<IUniversityDoc>('University', UniversitySchema);
+
+export const University = mongoose.model<IUniversityDoc>(
+  "University",
+  UniversitySchema
+);

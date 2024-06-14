@@ -9,7 +9,12 @@ const provider = new DefaultAuthProvider({
     const adminUser = await User.findOne({ email });
     if (adminUser && (await bcrypt.compare(password, adminUser.password))) {
       if (adminUser.role === 'Admin' || adminUser.role === 'Superadmin') {
-        return { email: adminUser.email, role: adminUser.role };
+        return {
+          email: adminUser.email,
+          role: adminUser.role,
+          firstName: adminUser.firstName,
+          surname: adminUser.surname,
+        };
       }
     }
 
