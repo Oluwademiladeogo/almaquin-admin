@@ -6,7 +6,8 @@
     "build": "tsc",
     "lint": "eslint \"src\"",
     "start": "dotenv -c '.env' -- node dist/app",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@adminjs/express": "^6.1.0",
