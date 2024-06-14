@@ -22,7 +22,27 @@ const start = async () => {
         resource: User,
         options: {
           properties: {
-            // password: { isVisible: { list: false, filter: false, show: false, edit: false } },
+            password: {
+              isVisible: { list: false, filter: false, show: false, edit: true },
+            },
+            role: {
+              isVisible: { list: true, filter: true, show: true, edit: true },
+            },
+          },
+          actions: {
+            new: {},
+            edit: {
+              isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
+            },    
+            delete: {
+              isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
+            },
+            list: {
+              isAccessible: ({ currentAdmin }) => currentAdmin && (currentAdmin.role === 'Superadmin' || currentAdmin.role === 'Admin'),
+            },
+            show: {
+              isAccessible: ({ currentAdmin }) => currentAdmin && (currentAdmin.role === 'Superadmin' || currentAdmin.role === 'Admin'),
+            },
           },
         },
       },
@@ -37,12 +57,6 @@ const start = async () => {
       withMadeWithLove: false,
     },
   });
-
-  if (process.env.NODE_ENV === 'production') {
-    await admin.initialize();
-  } else {
-    admin.watch();
-  }
 
   const router = buildAuthenticatedRouter(
     admin,

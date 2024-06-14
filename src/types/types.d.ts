@@ -28,7 +28,7 @@ export interface IUserContact {
 
 export interface IUserDoc extends Document {
   email: string;
-  phone_no: string;
+  phoneNo: string;
   password: string;
   role: string;
   surname: string;
@@ -38,6 +38,8 @@ export interface IUserDoc extends Document {
   schoolLocation: string;
   classLevel: string;
   reasonForJoining: string;
+  otp?: string;
+  isVerified: boolean;
 }
 
 export interface IProgram {

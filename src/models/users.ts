@@ -1,55 +1,71 @@
 import mongoose, { Document } from "mongoose";
+import bcrypt from 'bcrypt';
 import { IUserDoc } from "../types/types.js";
+import { getHashedPassword } from "../helpers/hashPassword.js";
 
-export const User = mongoose.model<IUserDoc>(
-  "Users",
-  new mongoose.Schema<IUserDoc>({
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    phone_no: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    role: {
-      type: String,
-      enum: ["User", "Admin"],
-      default: "User",
-    },
-    surname: {
-      type: String,
-      required: true,
-    },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    birthday: {
-      type: Date,
-      required: true,
-    },
-    presentSchool: {
-      type: String,
-      required: true,
-    },
-    schoolLocation: {
-      type: String,
-      required: true,
-    },
-    classLevel: {
-      type: String,
-      required: true,
-    },
-    reasonForJoining: {
-      type: String,
-      required: true,
-    },
-  })
-);
+const UserSchema = new mongoose.Schema<IUserDoc>({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  phoneNo: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  otp: {
+    type: String,
+  },
+  role: {
+    type: String,
+    enum: ["User", "Admin", "Superadmin"],
+    default: "User",
+  },
+  surname: {
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  birthday: {
+    type: Date,
+    required: true,
+  },
+  presentSchool: {
+    type: String,
+    required: true,
+  },
+  schoolLocation: {
+    type: String,
+    required: true,
+  },
+  classLevel: {
+    type: String,
+    required: true,
+  },
+  reasonForJoining: {
+    type: String,
+    required: true,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+UserSchema.pre('save', async function(next) {
+  if (this.isModified('password') || this.isNew) {
+    const value:any = await getHashedPassword(this.password);
+    this.password = value.hashedPassword
+  }
+  next();
+});
+
+export const User = mongoose.model<IUserDoc>("Users", UserSchema);
