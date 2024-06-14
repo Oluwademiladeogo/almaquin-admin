@@ -82,6 +82,9 @@ const start = async () => {
         resource: University,
         options: {
           actions: {
+            delete: {
+              isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
+            },
             bulkDelete: {
               isAccessible: () => false,
             },
