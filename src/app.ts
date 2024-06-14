@@ -23,7 +23,7 @@ const start = async () => {
         options: {
           properties: {
             password: {
-              isVisible: { list: false, filter: false, show: false, edit: true },
+              isVisible: { list: false, filter: false, show: false, edit: false },
             },
             role: {
               isVisible: { list: true, filter: true, show: true, edit: true },
@@ -42,6 +42,12 @@ const start = async () => {
             },
             show: {
               isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin']
+            },
+            bulkDelete: {
+              isAccessible: () => false,
+            },
+            bulkEdit: {
+              isAccessible: () => false,
             },
           },
         },
