@@ -1,5 +1,4 @@
 import mongoose, { Document } from 'mongoose';
-import bcrypt from 'bcrypt';
 import { IUserDoc } from '../types/types.js';
 import { getHashedPassword } from '../helpers/hashPassword.js';
 
@@ -65,6 +64,7 @@ UserSchema.pre('save', async function (next) {
     const value: any = await getHashedPassword(this.password);
     this.password = value.hashedPassword;
   }
+  this.email = this.email.toLowerCase();
   next();
 });
 
