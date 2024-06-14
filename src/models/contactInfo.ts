@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import { IContactInfo } from "../types/types.js";
+import mongoose, { Schema } from 'mongoose';
+import { IContactInfo } from '../types/types.js';
 
 const ContactInfoSchema: Schema<IContactInfo> = new Schema<IContactInfo>({
   phone: {
@@ -16,7 +16,4 @@ const ContactInfoSchema: Schema<IContactInfo> = new Schema<IContactInfo>({
   },
 });
 
-export const ContactInfo = mongoose.model<IContactInfo>(
-  "Contact",
-  ContactInfoSchema
-);
+export const ContactInfo = mongoose.model<IContactInfo>('Contact', ContactInfoSchema);

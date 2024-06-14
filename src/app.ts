@@ -38,10 +38,10 @@ const start = async () => {
               isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
             },
             list: {
-              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'].includes(currentAdmin.role),
+              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'],
             },
             show: {
-              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'].includes(currentAdmin.role),
+              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'],
             },
             bulkDelete: {
               isAccessible: () => false,

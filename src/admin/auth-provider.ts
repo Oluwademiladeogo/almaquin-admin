@@ -7,7 +7,7 @@ const provider = new DefaultAuthProvider({
   componentLoader,
   authenticate: async ({ email, password }) => {
     const adminUser = await User.findOne({ email });
-    if (adminUser && await bcrypt.compare(password, adminUser.password)) {
+    if (adminUser && (await bcrypt.compare(password, adminUser.password))) {
       if (adminUser.role === 'Admin' || adminUser.role === 'Superadmin') {
         return { email: adminUser.email, role: adminUser.role };
       }

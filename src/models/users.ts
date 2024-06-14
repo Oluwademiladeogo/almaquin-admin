@@ -1,7 +1,7 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document } from 'mongoose';
 import bcrypt from 'bcrypt';
-import { IUserDoc } from "../types/types.js";
-import { getHashedPassword } from "../helpers/hashPassword.js";
+import { IUserDoc } from '../types/types.js';
+import { getHashedPassword } from '../helpers/hashPassword.js';
 
 const UserSchema = new mongoose.Schema<IUserDoc>({
   email: {
@@ -23,8 +23,8 @@ const UserSchema = new mongoose.Schema<IUserDoc>({
   },
   role: {
     type: String,
-    enum: ["User", "Admin", "Superadmin"],
-    default: "User",
+    enum: ['User', 'Admin', 'Superadmin'],
+    default: 'User',
   },
   surname: {
     type: String,
@@ -60,12 +60,12 @@ const UserSchema = new mongoose.Schema<IUserDoc>({
   },
 });
 
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
   if (this.isModified('password') || this.isNew) {
-    const value:any = await getHashedPassword(this.password);
-    this.password = value.hashedPassword
+    const value: any = await getHashedPassword(this.password);
+    this.password = value.hashedPassword;
   }
   next();
 });
 
-export const User = mongoose.model<IUserDoc>("Users", UserSchema);
+export const User = mongoose.model<IUserDoc>('Users', UserSchema);

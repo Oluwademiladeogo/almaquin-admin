@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import { INews } from "../types/types.js";
+import mongoose, { Schema } from 'mongoose';
+import { INews } from '../types/types.js';
 
 const NewsSchema: Schema = new Schema({
   title: {
@@ -30,4 +30,4 @@ const NewsSchema: Schema = new Schema({
   ],
 });
 
-export const News = mongoose.model<INews>("News", NewsSchema);
+export const News = mongoose.model<INews>('News', NewsSchema);

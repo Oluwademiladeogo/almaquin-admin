@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import { IUserContact } from "../types/types.js";
+import mongoose, { Schema } from 'mongoose';
+import { IUserContact } from '../types/types.js';
 
 const UserContactSchema: Schema<IUserContact> = new Schema<IUserContact>({
   name: {
@@ -15,7 +15,4 @@ const UserContactSchema: Schema<IUserContact> = new Schema<IUserContact>({
     required: true,
   },
 });
-export const UserContact = mongoose.model<IUserContact>(
-  "UserContact",
-  UserContactSchema
-);
+export const UserContact = mongoose.model<IUserContact>('UserContact', UserContactSchema);
