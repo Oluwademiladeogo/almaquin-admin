@@ -33,23 +33,77 @@ const start = async () => {
             new: {},
             edit: {
               isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
-            },    
+            },
             delete: {
               isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Superadmin',
             },
             list: {
-              isAccessible: ({ currentAdmin }) => currentAdmin && (currentAdmin.role === 'Superadmin' || currentAdmin.role === 'Admin'),
+              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'].includes(currentAdmin.role),
             },
             show: {
-              isAccessible: ({ currentAdmin }) => currentAdmin && (currentAdmin.role === 'Superadmin' || currentAdmin.role === 'Admin'),
+              isAccessible: ({ currentAdmin }) => currentAdmin && ['Superadmin', 'Admin'].includes(currentAdmin.role),
+            },
+            bulkDelete: {
+              isAccessible: () => false,
+            },
+            bulkEdit: {
+              isAccessible: () => false,
             },
           },
         },
       },
-      ContactInfo,
-      SecSchool,
-      University,
-      News,
+      {
+        resource: ContactInfo,
+        options: {
+          actions: {
+            bulkDelete: {
+              isAccessible: () => false,
+            },
+            bulkEdit: {
+              isAccessible: () => false,
+            },
+          },
+        },
+      },
+      {
+        resource: SecSchool,
+        options: {
+          actions: {
+            bulkDelete: {
+              isAccessible: () => false,
+            },
+            bulkEdit: {
+              isAccessible: () => false,
+            },
+          },
+        },
+      },
+      {
+        resource: University,
+        options: {
+          actions: {
+            bulkDelete: {
+              isAccessible: () => false,
+            },
+            bulkEdit: {
+              isAccessible: () => false,
+            },
+          },
+        },
+      },
+      {
+        resource: News,
+        options: {
+          actions: {
+            bulkDelete: {
+              isAccessible: () => false,
+            },
+            bulkEdit: {
+              isAccessible: () => false,
+            },
+          },
+        },
+      },
     ],
     branding: {
       logo: false,
