@@ -149,6 +149,7 @@ const UniversitySchema: Schema<IUniversityDoc> = new Schema<IUniversityDoc>({
   ],
   dateAdded: {
     type: Date,
+    immutable: true,
     default: Date.now,
   },
   dateModified: {

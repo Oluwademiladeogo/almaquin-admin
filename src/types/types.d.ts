@@ -40,6 +40,8 @@ export interface IUserDoc extends Document {
   reasonForJoining: string;
   otp?: string;
   isVerified: boolean;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
 }
 
 export interface IProgram {

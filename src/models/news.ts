@@ -12,6 +12,7 @@ const NewsSchema: Schema = new Schema({
   },
   author: {
     type: String,
+    immutable: true,
     required: true,
   },
   tags: [
@@ -19,9 +20,17 @@ const NewsSchema: Schema = new Schema({
       type: String,
     },
   ],
-  publishedDate: {
+  dateAdded: {
+    type: Date,
+    immutable: true,
+    default: Date.now,
+  },
+  dateModified: {
     type: Date,
     default: Date.now,
+  },
+  lastUpdatedBy: {
+    type: String,
   },
   pictures: [
     {
@@ -30,4 +39,8 @@ const NewsSchema: Schema = new Schema({
   ],
 });
 
+NewsSchema.pre("save", function (next) {
+  this.dateModified = new Date();
+  next();
+});
 export const News = mongoose.model<INews>('News', NewsSchema);
