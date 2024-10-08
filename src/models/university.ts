@@ -7,17 +7,16 @@ const ProgramSchema: Schema<IProgram> = new Schema<IProgram>({
     required: true,
   },
   certs: [String],
-  fees: {
-    tuition: { type: String, required: true },
-    applicationFee: { type: String, required: true },
-    applicationFeeWaiver: { type: String },
-    scholarships: [
-      {
-        name: { type: String, required: true },
-        details: { type: String, required: true },
-      },
-    ],
-  },
+  //dont nest anything anymore in fees and try again
+  tuitionFee: { type: Number },
+  applicationFee: { type: Number },
+  applicationFeeWaiver: { type: String },
+  scholarships: [
+    {
+      name: { type: String, required: true },
+      details: { type: String, required: true },
+    },
+  ],
 });
 
 const AcademicSchema: Schema<IAcademic> = new Schema<IAcademic>({
