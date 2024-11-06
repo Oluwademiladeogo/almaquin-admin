@@ -20,14 +20,36 @@ export default {
       new: {
         before: async (request, context) => {
           if (request.payload && request.payload.email) {
-            const token = crypto.randomBytes(20).toString('hex');
-            await sendMagicLink(request.payload.email, token);
             const email = request.payload.email;
-            const user = await User.findOne({ email });
+            const phoneNo = request.payload.phoneNo;
+            const role = request.payload.role;
+            const surname = request.payload.surname;
+            const firstName = request.payload.firstName;
+            const birthday = request.payload.birthday;
+            const schoolLocation = request.payload.schoolLocation;
+            const reasonForJoining = request.payload.reasonForJoining;
+            const classLevel = request.payload.classLevel;
+            const presentSchool = request.payload.presentSchool;
+            let user = new User({
+              email,
+              phoneNo,
+              role,
+              surname,
+              firstName,
+              birthday,
+              schoolLocation,
+              reasonForJoining,
+              classLevel,
+              presentSchool,
+            });
+            // await user.save();
+
+            const token = crypto.randomBytes(20).toString('hex');
             const expires = Date.now() + 3600000; // 1 hour
             user.resetPasswordToken = token;
             user.resetPasswordExpires = new Date(expires);
-            await user.save();
+            // await user.save();
+            await sendMagicLink(email, token);
           }
           return request;
         },
