@@ -10,19 +10,25 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
-    "@adminjs/express": "^6.1.0",
-    "@adminjs/mongoose": "^4.0.0",
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/mongoose": "^4.1.0",
     "@adminjs/passwords": "^4.0.0",
-    "adminjs": "^7.4.1",
+    "adminjs": "^7.8.17",
     "argon2": "^0.40.1",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^6.0.0",
     "express": "^4.21.2",
     "express-formidable": "^1.2.0",
     "express-session": "^1.18.1",
-    "mongoose": "^7.8.6",
-    "nodemailer": "^6.9.13",
+    "mongoose": "^8.23.1",
+    "nodemailer": "^8.0.7",
     "winston": "^3.13.0",
     "winston-mongodb": "^5.1.1"
+  },
+  "overrides": {
+    "@tiptap/extension-link": "^2.27.2",
+    "i18next-http-backend": "^3.0.6",
+    "@tinymce/tinymce-react": "^6.3.0",
+    "tinymce": "^8.5.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

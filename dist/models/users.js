@@ -1,27 +1,25 @@
-import mongoose from "mongoose";
-export const User = mongoose.model("Users", new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-    },
+import mongoose from 'mongoose';
+const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
         unique: true,
     },
-    phone_no: {
+    phoneNo: {
         type: String,
         required: true,
         unique: true,
     },
     password: {
         type: String,
-        required: true,
+    },
+    otp: {
+        type: String,
     },
     role: {
         type: String,
-        enum: ["User", "Admin"],
-        default: "User",
+        enum: ['User', 'Admin', 'Superadmin'],
+        default: 'User',
     },
     surname: {
         type: String,
@@ -39,6 +37,10 @@ export const User = mongoose.model("Users", new mongoose.Schema({
         type: String,
         required: true,
     },
+    schoolLocation: {
+        type: String,
+        required: true,
+    },
     classLevel: {
         type: String,
         required: true,
@@ -46,5 +48,20 @@ export const User = mongoose.model("Users", new mongoose.Schema({
     reasonForJoining: {
         type: String,
         required: true,
-    }
-}));
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    resetPasswordToken: {
+        type: String,
+    },
+    resetPasswordExpires: {
+        type: Date,
+    },
+});
+UserSchema.pre('save', async function (next) {
+    this.email = this.email.toLowerCase();
+    next();
+});
+export const User = mongoose.model('Users', UserSchema);

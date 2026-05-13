@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 const ContactInfoSchema = new Schema({
     phone: {
         type: String,
@@ -13,4 +13,4 @@ const ContactInfoSchema = new Schema({
         required: true,
     },
 });
-export const ContactInfo = mongoose.model("Contact", ContactInfoSchema);
+export const ContactInfo = mongoose.model('Contact', ContactInfoSchema);

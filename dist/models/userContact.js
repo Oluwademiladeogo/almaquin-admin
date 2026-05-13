@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 const UserContactSchema = new Schema({
     name: {
         type: String,
@@ -13,4 +13,4 @@ const UserContactSchema = new Schema({
         required: true,
     },
 });
-export const UserContact = mongoose.model("UserContact", UserContactSchema);
+export const UserContact = mongoose.model('UserContact', UserContactSchema);
